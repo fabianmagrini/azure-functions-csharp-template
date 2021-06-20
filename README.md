@@ -36,3 +36,47 @@ func start
 ```
 
 The local URL that the function will be running on will be displayed. Eg <http://localhost:7071/api/HttpExample>.
+
+## Create the Azure resources for the Function App
+
+We will use bicep to create as infrastructure as code.
+
+See <https://github.com/Azure/bicep/blob/main/docs/examples/101/function-app-create/main.bicep>.
+
+### Deploy the Bicep template from local
+
+Added default values to the template when running local.
+
+```sh
+deploymentName=AzureFunctionsQuickstart
+resourceGroupName=AzureFunctionsQuickstart-rg
+location=australiaeast
+az group create -l $location -n $resourceGroupName
+az deployment group create \
+  --name $deploymentName \
+  --resource-group $resourceGroupName \
+  --template-file "./Infrastructure/FunctionApp/main.bicep" \
+  --parameters "./Infrastructure/FunctionApp/main.parameters.dev.json"
+```
+
+## Deploy the function project to Azure
+
+```sh
+cd Template.FunctionApp/
+func azure functionapp publish <APP_NAME>
+```
+
+The URL that the function will be running on will be displayed.
+
+View near real-time logs
+
+```sh
+func azure functionapp logstream <APP_NAME>
+```
+
+## Clean up deployment
+
+```sh
+resourceGroupName={resource group name}
+az group delete --name $resourceGroupName --yes --no-wait
+```
