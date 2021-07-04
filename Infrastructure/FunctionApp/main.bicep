@@ -289,3 +289,5 @@ resource functionAppBinding 'Microsoft.Web/sites/hostNameBindings@2020-06-01' = 
     hostNameType: 'Verified'
   }
 }
+
+output functionAppName string = functionApp.name
