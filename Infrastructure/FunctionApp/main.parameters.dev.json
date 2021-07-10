@@ -7,8 +7,8 @@
       },
       "appTags": {
         "value": {
-          "AppID": "myfunc",
-          "AppName": "My Function App"
+          "AppID": "httpexample",
+          "AppName": "Http Example"
         }
       }
     }

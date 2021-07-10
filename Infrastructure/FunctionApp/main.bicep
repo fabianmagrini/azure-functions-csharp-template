@@ -4,8 +4,8 @@
 
 @description('The tags to apply to the resources created.')
 param appTags object = {
-  AppID: 'myfunc'
-  AppName: 'My Function App'
+  AppID: 'functionapp'
+  AppName: 'Azure Function app template'
 }
 
 param location string = resourceGroup().location
@@ -29,6 +29,9 @@ param retentionDays int = 90
 var functionAppName = '${appNamePrefix}-functionapp'
 var appServiceName = '${appNamePrefix}-appservice'
 var appInsightsName = '${appNamePrefix}-appinsights'
+
+var subscriptionId = subscription().subscriptionId
+var logAnalyticsWorkspaceName = '${workspaceNamePrefix}-${subscriptionId}'
 
 // remove dashes for storage account name
 var storageAccountName = format('{0}sta', replace(appNamePrefix, '-', ''))
@@ -78,9 +81,7 @@ resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2019-06-01
   }
 }
 
-var subscriptionId = subscription().subscriptionId
-var logAnalyticsWorkspaceName = '${workspaceNamePrefix}-${subscriptionId}'
-
+// Log Analytics Workspace resource
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
   name: logAnalyticsWorkspaceName
   location: location
