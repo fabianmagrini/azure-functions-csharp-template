@@ -1,0 +1,31 @@
+name: 'Deploy FunctionApp using Bicep'
+
+on:
+  workflow_dispatch:
+
+env:
+  ResourceGroup: AzureFunctionsQuickstart-rg
+  Location: australiaeast
+
+jobs:
+  deploy-infrastructure:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+
+      - name: 'Azure login' 
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: 'Create resource group'
+        run: |
+          az group create -l ${{ env.Location }} -n ${{ env.ResourceGroup }}
+
+      # Create the FunctionApp
+      
+      - name: 'Run FunctionApp deployment'
+        run: |
+          az deployment group create --name devenvironment --resource-group ${{ env.ResourceGroup }} --template-file ./Infrastructure/FunctionApp/main.bicep --parameters ./Infrastructure/FunctionApp/main.parameters.dev.json
