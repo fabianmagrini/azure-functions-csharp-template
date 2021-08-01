@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  ResourceGroup: AzureFunctionsQuickstart-rg
+  ResourceGroup: functionapp-template
   Location: australiaeast
 
 jobs:
