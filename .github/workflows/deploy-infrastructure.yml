@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  ResourceGroup: functionapp-template
+  ResourceGroup: rg-functionapp-template
   Location: australiaeast
 
 jobs:
@@ -28,4 +28,4 @@ jobs:
       
       - name: 'Run FunctionApp deployment'
         run: |
-          az deployment group create --name devenvironment --resource-group ${{ env.ResourceGroup }} --template-file ./Infrastructure/FunctionApp/main.bicep --parameters ./Infrastructure/FunctionApp/main.parameters.dev.json
+          az deployment group create --name functionapp --resource-group ${{ env.ResourceGroup }} --template-file ./Infrastructure/FunctionApp/main.bicep --parameters ./Infrastructure/FunctionApp/main.parameters.dev.json
