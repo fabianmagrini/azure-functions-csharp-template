@@ -48,8 +48,8 @@ See <https://github.com/Azure/bicep/blob/main/docs/examples/101/function-app-cre
 Added default values to the template when running local.
 
 ```sh
-deploymentName=AzureFunctionsQuickstart
-resourceGroupName=AzureFunctionsQuickstart-rg
+deploymentName=functionapp
+resourceGroupName=rg-functionapp-template
 location=australiaeast
 az group create -l $location -n $resourceGroupName
 az deployment group create \
