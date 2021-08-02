@@ -59,6 +59,12 @@ az deployment group create \
   --parameters "./Infrastructure/FunctionApp/main.parameters.dev.json"
 ```
 
+### Deploy the Bicep template using GitHub Actions
+
+See <https://github.com/fabianmagrini/awesome-learn-azure#github-actions>.
+
+Configure your Github Repo for Deployment to Azure. See <https://gist.github.com/fabianmagrini/73e20dd09b252dac5e1453b0240c6b3c>.
+
 ## Deploy the function project to Azure
 
 ```sh
