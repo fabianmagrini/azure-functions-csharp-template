@@ -2,8 +2,7 @@ name: Publish Application
 
 on:
   push:
-    paths:
-      - 'Template.FunctionApp/**'
+    tags: [ v* ]
 
 env:
   DOTNET_VERSION: 5.0.x
